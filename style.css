@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400');
+
+body {
+  background-color: #282a36;
+  color: white;
+}
+
+main {
+  margin: 1em 0em;
+  font-size: 1.5em;
+  font-family: 'Source Code Pro';
+}
+
+div#line:after {
+  content: ');';
+  display: inline-block;
+  color: #fff;
+  font-style: normal;
+}
+
+div#func {
+  display: inline-block;
+  color: #8be9fd;
+  font-style: italic;
+}
+
+
+div#func:after {
+  content: '(';
+  color: #fff;
+  font-style: normal;
+}
+
+div#end {
+  display: inline-block;
+  font-weight: 400;
+  color: #f1fa8c;
+  content: '00:00';
+  margin: .5em 0;
+}
+
+div#end:focus {
+  outline: 0px solid transparent;
+}
+
+div#end:before {
+  content: '\'';
+}
+
+div#end:after {
+  content: '\'';
+}
+
+div#end:focus {
+  background-color: #44475a;
+}
+
+div#instructions, div#clock {
+  color: #6272a4;
+}
+div#instructions {
+  font-size: 1em;
+  margin-bottom: .5em;
+}
+div#clock {
+  margin: .5em 0;
+}
+
+div#clock:before {
+  content: '// \'';
+  font-weight: normal;
+}
+
+div#clock:after {
+  content: '\'';
+  font-weight: normal;
+}

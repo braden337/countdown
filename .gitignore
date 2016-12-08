@@ -1,2 +1,5 @@
+.DS_Store
 node_modules
-app-compiled.js
+dist
+app.compiled.js
+

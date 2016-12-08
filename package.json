@@ -10,7 +10,7 @@
   },
   "scripts": {
     "postinstall": "npm run build && open index.html",
-    "build": "./node_modules/.bin/babel app.js -o app-compiled.js",
-    "deploy": "npm run build && ./node_modules/.bin/gh-pages -s index.html style.css app-compiled.js"
+    "build": "./node_modules/.bin/babel app.js -o app-compiled.js && sh build.sh",
+    "deploy": "npm run build && ./node_modules/.bin/gh-pages -d dist"
   }
 }

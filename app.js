@@ -21,7 +21,7 @@ if (endTime) {
   (handleEndChange.bind(end))();
 }
 else {
-  clock.hidden = true;
+  (resetDisplay.bind(clock))(false);
   clearInterval(timer);
 }
 
@@ -32,23 +32,20 @@ function handleEndChange() {
   if (re1.test(this.innerText) || re2.test(this.innerText)) {
     localStorage.setItem('end', this.innerText);
     (resetDisplay.bind(clock))(true);
-    clearInterval(timer);
     timer = createTimer(this.innerText);
   }
   else {
+    clearInterval(timer);
     (resetDisplay.bind(clock))(false);
   }
 }
 
 function resetDisplay(show) {
-  if (show) {
-    this.innerText = '--:--:--';
+  this.innerText = '--:--:--';
+  if (show)
     this.hidden = false;
-  }
-  else {
+  else
     this.hidden = true;
-    this.innerText = '--:--:--';
-  }
 }
 
 function getMonth(num) {

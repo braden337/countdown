@@ -9,7 +9,7 @@ let day = now.getDate();
 let monthDayYear = getMonth(month) + ' ' + day + ', ' + year;
 
 let re1 = /^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$/;
-let re2 = /^([0-1][0-9]|2[0-4]):([0-5][0-9])$/;
+let re2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])$/;
 
 let timer = null;
 end.addEventListener('input', handleEndChange);

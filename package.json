@@ -13,10 +13,10 @@
   },
   "scripts": {
     "postinstall": "npm run build",
-    "build": "./node_modules/.bin/babel app.js -o app.compiled.js && sh utilities.sh -b",
+    "build": "./node_modules/.bin/babel --presets=es2015 app.js -o app.compiled.js && sh utilities.sh -b",
     "deploy": "npm run build && ./node_modules/.bin/gh-pages -d dist",
     "watch": "onchange '{index,style,app}.{html,css,js}' -- npm run build",
     "start": "npm run build && ./node_modules/.bin/parallelshell \"./node_modules/.bin/browser-sync start -s dist -f dist/**/*\" \"npm run watch\"",
-    "clean": "sh utilities.sh -c"
+    "cln": "sh utilities.sh -c"
   }
 }

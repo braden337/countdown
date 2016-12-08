@@ -10,8 +10,7 @@ if [ "$1" = "-b" ]; then
 
 elif [ "$1" = "-c" ]; then
 
-  rm -rf dist
-  rm app.compiled.js
+  rm -rf dist *.compiled.js
 
 else
 

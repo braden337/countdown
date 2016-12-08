@@ -11,7 +11,7 @@ var day = now.getDate();
 var monthDayYear = getMonth(month) + ' ' + day + ', ' + year;
 
 var re1 = /^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$/;
-var re2 = /^([0-1][0-9]|2[0-4]):([0-5][0-9])$/;
+var re2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])$/;
 
 var timer = null;
 end.addEventListener('input', handleEndChange);

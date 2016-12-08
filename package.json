@@ -15,7 +15,9 @@
     "postinstall": "npm run build",
     "build": "./node_modules/.bin/babel --presets=es2015 app.js -o app.compiled.js && sh utilities.sh -b",
     "deploy": "npm run build && ./node_modules/.bin/gh-pages -d dist",
-    "watch": "onchange '{index,style,app}.{html,css,js}' -- npm run build",
+    "watch": "npm run build && ./node_modules/.bin/parallelshell \"npm run watch:static\" \"npm run watch:js\"",
+    "watch:static": "onchange '*.{html,css}' -- sh utilities.sh -b",
+    "watch:js": "onchange 'app.js' -- npm run build",
     "start": "npm run build && ./node_modules/.bin/parallelshell \"./node_modules/.bin/browser-sync start -s dist -f dist/**/*\" \"npm run watch\"",
     "cln": "sh utilities.sh -c"
   }

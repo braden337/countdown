@@ -2,14 +2,10 @@ let clock = document.getElementById('clock');
 let end = document.getElementById('end');
 
 let now = new Date();
-let year = now.getFullYear();
-let month = now.getMonth();
-let day = now.getDate();
+let monthDayYear = getMonth(now.getMonth()) + ' ' + now.getDate() + ', ' + now.getFullYear();
 
-let monthDayYear = getMonth(month) + ' ' + day + ', ' + year;
-
-let re1 = /^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$/;
-let re2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])$/;
+let regexAMPM = /^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$/;
+let regex24 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])$/;
 
 let timer = null;
 end.addEventListener('input', handleEndChange);
@@ -29,18 +25,18 @@ else {
 
 function handleEndChange() {
   
-  if (re1.test(this.innerText) || re2.test(this.innerText)) {
+  if (regexAMPM.test(this.innerText) || regex24.test(this.innerText)) {
     localStorage.setItem('end', this.innerText);
     (resetDisplay.bind(clock))(true);
     timer = createTimer(this.innerText);
   }
   else {
-    clearInterval(timer);
     (resetDisplay.bind(clock))(false);
   }
 }
 
 function resetDisplay(show) {
+  clearInterval(timer);
   this.innerText = '--:--:--';
   if (show)
     this.hidden = false;
@@ -71,7 +67,7 @@ function getTimeRemaining(later) {
   
   let h = Math.floor(diff / 60 / 60);
   let m = Math.floor((diff / 60) % 60);
-  let s = diff % 60
+  let s = diff % 60;
   return {
     hours: String(h < 10 ? '0' + h + ':': h + ':'),
     minutes: String(m < 10 ? '0' + m : m),

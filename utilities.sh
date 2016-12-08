@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-if [ "$1" = "-b" ]; then
+if [ "$1" = "-b" ] || [ "$1" = "--build" ]; then
   
   mkdir -p dist
 
@@ -8,7 +8,7 @@ if [ "$1" = "-b" ]; then
     do cp -v "$file" dist
   done
 
-elif [ "$1" = "-c" ]; then
+elif [ "$1" = "-c" ] || [ "$1" = "--clean" ]; then
 
   rm -rf dist *.compiled.js
 

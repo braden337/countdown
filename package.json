@@ -12,13 +12,15 @@
     "parallelshell": "^2.0.0"
   },
   "scripts": {
-    "postinstall": "npm run build",
-    "build": "./node_modules/.bin/babel --presets=es2015 app.js -o app.compiled.js && sh utilities.sh -b",
-    "deploy": "npm run build && ./node_modules/.bin/gh-pages -d dist",
-    "watch": "npm run build && ./node_modules/.bin/parallelshell \"npm run watch:static\" \"npm run watch:js\"",
-    "watch:static": "onchange '*.{html,css}' -- sh utilities.sh -b",
-    "watch:js": "onchange 'app.js' -- npm run build",
-    "start": "npm run build && ./node_modules/.bin/parallelshell \"./node_modules/.bin/browser-sync start -s dist -f dist/**/*\" \"npm run watch\"",
-    "cln": "sh utilities.sh -c"
+    "postinstall": "yarn build",
+    "build": "./node_modules/.bin/babel --presets=es2015 app.js -o app.compiled.js && sh utilities.sh --build",
+    "build:static": "sh utilities.sh --build",
+    "deploy": "yarn build && ./node_modules/.bin/gh-pages -d dist && yarn cleanup",
+    "watch": "yarn build && ./node_modules/.bin/parallelshell \"yarn watch:static\" \"yarn watch:js\"",
+    "watch:js": "onchange 'app.js' -- yarn build",
+    "watch:static": "onchange '*.{html,css}' -- yarn build:static",
+
+    "start": "yarn build && ./node_modules/.bin/parallelshell \"./node_modules/.bin/browser-sync start -s dist -f dist/**/*\" \"yarn watch\"",
+    "cleanup": "sh utilities.sh --clean"
   }
 }

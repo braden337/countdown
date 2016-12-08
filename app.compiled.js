@@ -4,14 +4,10 @@ var clock = document.getElementById('clock');
 var end = document.getElementById('end');
 
 var now = new Date();
-var year = now.getFullYear();
-var month = now.getMonth();
-var day = now.getDate();
+var monthDayYear = getMonth(now.getMonth()) + ' ' + now.getDate() + ', ' + now.getFullYear();
 
-var monthDayYear = getMonth(month) + ' ' + day + ', ' + year;
-
-var re1 = /^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$/;
-var re2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])$/;
+var regexAMPM = /^((1[0-2]|0?[1-9]):([0-5][0-9]) ([AaPp][Mm]))$/;
+var regex24 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])$/;
 
 var timer = null;
 end.addEventListener('input', handleEndChange);
@@ -30,17 +26,17 @@ if (endTime) {
 
 function handleEndChange() {
 
-  if (re1.test(this.innerText) || re2.test(this.innerText)) {
+  if (regexAMPM.test(this.innerText) || regex24.test(this.innerText)) {
     localStorage.setItem('end', this.innerText);
     resetDisplay.bind(clock)(true);
     timer = createTimer(this.innerText);
   } else {
-    clearInterval(timer);
     resetDisplay.bind(clock)(false);
   }
 }
 
 function resetDisplay(show) {
+  clearInterval(timer);
   this.innerText = '--:--:--';
   if (show) this.hidden = false;else this.hidden = true;
 }

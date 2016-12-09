@@ -15,14 +15,14 @@
     "postinstall": "yarn build",
     "start": "yarn build && ./node_modules/.bin/parallelshell \"./node_modules/.bin/browser-sync start -s dist -f dist/**/*\" \"yarn watch\"",
     
-    "build": "./node_modules/.bin/babel --presets=es2015 app.js -o app.compiled.js && sh utilities.sh --build",
-    "build:static": "sh utilities.sh --build",
+    "build": "./node_modules/.bin/babel --presets=es2015 app.js -o app.compiled.js && bash utilities.sh --build",
+    "build:static": "bash utilities.sh --build",
     
     "watch": "yarn build && ./node_modules/.bin/parallelshell \"yarn watch:static\" \"yarn watch:js\"",
     "watch:js": "onchange 'app.js' -- yarn build",
     "watch:static": "onchange '*.{html,css}' -- yarn build:static",
 
-    "cleanup": "sh utilities.sh --clean",
+    "cleanup": "bash utilities.sh --clean",
     "deploy": "yarn build && ./node_modules/.bin/gh-pages -d dist && yarn cleanup"
   }
 }

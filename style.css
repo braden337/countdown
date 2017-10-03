@@ -33,6 +33,7 @@ div#func:after {
 
 div#end {
   display: inline-block;
+  white-space: nowrap;
   font-weight: 400;
   color: #f1fa8c;
   content: '00:00';
